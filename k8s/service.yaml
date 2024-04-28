@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: goserver-service
+spec:
+  selector:
+    app: goserver
+  # type: ClusterIP     - Gera um IP interno
+  # type: NodePort      - Gera uma porta e libera em todos nodes (expõe portas)
+  # type: LoadBalancer  - Gera um IP para acessar de fora do cluster
+  type: ClusterIP
+  ports:
+    - name: goserver-service
+      port: 80             # Service Port
+      targetPort: 8000     # Container Port
+      # nodePort: 30001      # Range de portas alta 30000 - 32767
+      protocol: TCP
